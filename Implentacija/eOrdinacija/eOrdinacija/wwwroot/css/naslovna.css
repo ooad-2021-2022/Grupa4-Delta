@@ -1,0 +1,40 @@
+﻿body, html {
+    height: 100%;
+    width: 100%;
+  }
+.logo{
+    height: 20px;
+}
+.text{
+    color: rgb(51, 122, 183);
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 60px;
+
+}
+.pozadina{
+    background-color: rgb(248, 246, 248);
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+.prijava{
+    margin-top: 15px;
+    color: rgb(51, 122, 183);
+    margin-bottom: 60px;
+}
+
+#navbar3{
+    margin-top: 15px;
+    
+}
+
+
+.mySlides
+{
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+textarea {
+    resize: vertical;
+  }
