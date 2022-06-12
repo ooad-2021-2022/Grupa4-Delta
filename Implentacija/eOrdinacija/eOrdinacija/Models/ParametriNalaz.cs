@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,23 +6,21 @@ using System.Threading.Tasks;
 
 namespace eOrdinacija.Models
 {
-    public class Nalaz
-    {
+    public enum ParametriNalaza { eritrociti, leukociti, hemoglobin, kreating, ggt, zeljezo, trombociti };
 
+    public class ParametriNalaz
+    {
         [Key]
         [Required]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Obavezna vrijednost")]
-        public DateTime datumVrijeme { get; set; }
+        public int NalazId { get; set; }
 
         [Required(ErrorMessage = "Obavezna vrijednost")]
-        public Pacijent Pacijent { get; set; }
+        public String ParametriNalaza { get; set; }
 
         [Required(ErrorMessage = "Obavezna vrijednost")]
-        public string QrCode { get; set; }
-
-        [Required(ErrorMessage = "Obavezna vrijednost")]
-        public Karton Karton { get; set; }
+        public double Vrijednost { get; set; }
     }
 }
