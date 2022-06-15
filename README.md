@@ -9,4 +9,5 @@
 * Faris Hrvo
 * Mustafa Pašić
 
-
+Link na deploy stranice
+http://deltaooad1-001-site1.etempurl.com/
