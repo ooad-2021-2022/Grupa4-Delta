@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Skeniranje";
+}
+
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<link rel="stylesheet" type="text/css" href="~/css/naslovna.css">
+
+
+<!-- Please visit https://www.dynamsoft.com/customer/license/trialLicense to get a trial license. -->
+<script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.0.0/dist/dbr.js"></script>
+
+<script>
+    Dynamsoft.DBR.BarcodeReader.license = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==";
+</script>
+
+<h4 style="text-align: center;">
+    Kako biste uspješno skeniranli Vš nalaz molimo Vas da dozvolite korištenje kamere prilikom skeniranja.
+    Zatim prislonive QR kod sa Vašeg nalaza tako da popunjava granice kvadrata koji vidite na ekranu.
+</h4>
+
+<h2 style=" text-align: center; margin-top: 2%;">Skener</h2>
+
+
+
+<div class="container-fluid pozadina" style="margin-left: 8%; margin-right: 8%;">
+
+
+    <hr style="width:50%;text-align:left;margin-left:0">
+    <div id="status">Initializing...</div>
+    Choose image(s) to decode:
+    <input id="ipt-file" type="file" multiple accept="image/png,image/jpeg,image/bmp,image/gif" disabled>
+    <br><br>
+    <button id="btn-show-scanner" disabled>show scanner</button>
+
+
+
+
+
+    <script>
+        // scanner for decoding video
+        let scanner = null;
+        window.onload = async function () {
+            reader = await Dynamsoft.DBR.BarcodeReader.createInstance();
+            if (reader) {
+                document.getElementById('ipt-file').disabled = "";
+            }
+            scanner = await Dynamsoft.DBR.BarcodeScanner.createInstance();
+            if (scanner) {
+                document.getElementById('btn-show-scanner').disabled = "";
+            }
+
+            if (reader != null || scanner != null) {
+                document.getElementById('status').remove();
+            }
+        }
+
+        // decode video from camera
+        document.getElementById('btn-show-scanner').addEventListener('click', async () => {
+            /**
+             * onFrameRead is triggered after the library finishes reading a frame image.
+             * There can be multiple barcodes on one image.
+             */
+            scanner.onFrameRead = results => {
+                if (results.length) {
+                    console.log(results);
+                }
+            };
+            /**
+             * onUniqueRead is triggered only when a 'new' barcode is found.
+             * The amount of time that the library 'remembers' a barcode is defined by
+             * "duplicateForgetTime" in "ScanSettings". By default it is set to 3000 ms.
+             */
+            scanner.onUniqueRead = (txt, result) => {
+                alert(result.barcodeFormatString + ': ' + txt);
+            };
+            await scanner.show();
+        });
+
+    </script>
+
+</div>
+
+

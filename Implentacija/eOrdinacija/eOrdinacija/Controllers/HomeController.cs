@@ -28,6 +28,11 @@ namespace eOrdinacija.Controllers
             return View();
         }
 
+        public IActionResult Skeniranje()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
